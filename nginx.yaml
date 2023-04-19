@@ -1,0 +1,66 @@
+nginx_version: 1.23.4
+package_name: nginx-upsync
+output_package: rpm
+modules:
+  - module:
+      name: nginx_upstream_check_module
+      git_url: https://github.com/msaf1980/nginx_upstream_check_module.git
+      git_tag: v0.5.0
+      patch: check_1.20.1+.patch
+  - module:
+      name: nginx-upsync-module
+      git_url: https://github.com/msaf1980/nginx-upsync-module.git
+      git_tag: v2.1.4
+  - module:
+      name: nginx-module-vts
+      git_url: https://github.com/msaf1980/nginx-module-vts.git
+      git_tag: v0.1.19
+  - module:
+      name: nginx-njs
+      git_url: https://github.com/nginx/njs.git
+      git_tag: 0.7.2
+      sub_dir: nginx
+  - module:
+      name: http_gzip_static_module
+      type: embedded
+  - module:
+      name: http_v2_module
+      type: embedded
+  - module:
+      name: http_ssl_module
+      type: embedded
+  - module:
+      name: http_addition_module
+      type: embedded
+  - module:
+      name: http_auth_request_module
+      type: embedded
+  - module:
+      name: http_gunzip_module
+      type: embedded
+  - module:
+      name: http_gzip_static_module
+      type: embedded
+  - module:
+      name: http_realip_module
+      type: embedded
+  - module:
+      name: http_secure_link_module
+      type: embedded
+  - module:
+      name: http_slice_module
+      type: embedded
+  - module:
+      name: http_stub_status_module
+      type: embedded
+  - module:
+      name: http_sub_module
+      type: embedded
+  - module:
+      name: stream_realip_module
+      type: embedded
+  - module:
+      name: stream_ssl_preread_module
+      type: embedded
+configure_params:
+  - "--with-openssl-opt='enable-tls1_3'"
